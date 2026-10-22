@@ -11,16 +11,53 @@ shift = int(input("Type the shift number:\n"))
 # TODO-3: Combine the 'encrypt()' and 'decrypt()' functions into one function called 'caesar()'.
 #  Use the value of the user chosen 'direction' variable to determine which functionality to use.
 
-def encrypt(original_text, shift_amount):
+# def encrypt(original_text, shift_amount):
+#     cipher_text = ""
+#     for letter in original_text:
+#         shifted_position = alphabet.index(letter) + shift_amount
+#         shifted_position %= len(alphabet)
+#         cipher_text += alphabet[shifted_position]
+#     print(f"Here is the encoded result: {cipher_text}")
+#
+# def decrypt(original_text, shift_amount):
+#     cipher_text = ""
+#     for letter in original_text:
+#         shifted_position = alphabet.index(letter) - shift_amount
+#         shifted_position %= len(alphabet)
+#         cipher_text += alphabet[shifted_position]
+#     print(f"Here is the decoded result: {cipher_text}")
+#
+#
+#
+#
+# def caesar(original_text, shift_amount, direction):
+#     if direction == "encode":
+#         encrypt(original_text, shift_amount)
+#     else:
+#         decrypt(original_text, shift_amount)
+#
+#
+# caesar(text, shift, direction)
+
+def caesar(original_text, shift_amount, direction):
     cipher_text = ""
+
     for letter in original_text:
-        shifted_position = alphabet.index(letter) + shift_amount
-        shifted_position %= len(alphabet)
-        cipher_text += alphabet[shifted_position]
-    print(f"Here is the encoded result: {cipher_text}")
+        position = alphabet.index(letter)
 
+        if direction == "encode":
+            new_position = position + shift_amount
 
-encrypt(original_text=text, shift_amount=shift)
+        else:
+            new_position = position - shift_amount
 
+        new_position %= len(alphabet)
+        cipher_text += alphabet[new_position]
 
-
+    if direction == "encode":
+        print(f"The encrypted message is:{cipher_text}")
+    elif direction == "decode":
+        print(f"The decrypted message is:{cipher_text}")
+    else:
+        print("Please type 'encode' or 'decode'")
+caesar(text, shift, direction)
